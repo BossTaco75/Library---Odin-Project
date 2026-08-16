@@ -1,8 +1,7 @@
 <html>
 
 <head>
-    <link ref="stylesheet" href="style.css">
-    <!-- <script src="library.js"></script> -->
+    <link rel   ="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,45 +15,31 @@
         <tbody id="product-table-body"></tbody>
     </table>
 
-    <script>
-        function Book(title, author, pages, read) {
-            if (!new.target) {
-                throw Error("Must use 'new' when creating a new instance")
-            }
-            this.title = title;
-            this.author = author;
-            this.pages = pages;
-            this.read = read;
-            this.id = crypto.randomUUID();
+    <button id="openDialog">Add Book</button>
 
-            this.info = title + " by " + author + ", " + pages + " pages" + ", " + read + ".";
-        }
+    <dialog id="getDialog">
+        <h3>Add a new Book</h3>
+        <form id="addBookForm">
+            <label for="title">*Book's Title</label>
+            <input type="text" id="title" name="bookTitle" required>
 
-        let book1 = new Book("The book1", "author1", 1, "not read yet");
-        let book2 = new Book("The book2", "author2", 2, "already read");
-        let book3 = new Book("The book3", "author3", 3, "not read yet");
+            <label for="author">*Book's Author</label>
+            <input type="text" id="author" name="bookAuthor" required>
 
-        const library = [book1, book2, book3];
+            <label for="pages">*Book's # of Pages</label>
+            <input type="text" id="pages" name="bookPages" required>
 
-        function addBooktoLibary(title, author, pages, read) {
-            const book = new Book(title, author, pages, read);
-            library.push(book);
-        }
+            <div>
+                <input type="checkbox" id="boolRead" name="bookRead">
+                <label for="boolRead">*Have you read the book?</label>
+            </div>
 
-        const tableBody = document.getElementById("product-table-body");
+            <button type="submit">Submit</button>
+        </form>
+        <button id="closeDialog">Close</button>
+    </dialog>
 
-        let tableRowsHTML = "";
-
-        library.forEach(book => {
-            tableRowsHTML += `
-        <tr>
-            <td>${book.info}</td>
-        </tr> 
-        `;
-        });
-
-        tableBody.innerHTML = tableRowsHTML;
-    </script>
+    <script src="library.js"></script>
 </body>
 
 </html>
