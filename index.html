@@ -1,44 +1,59 @@
 <html>
 
 <head>
-    <link rel   ="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Library Project</title>
 </head>
 
 <body>
-    <h3>My Library</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Book</th>
-            </tr>
-        </thead>
-        <tbody id="product-table-body"></tbody>
-    </table>
+    <div class="main_body">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3" class="title">My Library</th>
+                </tr>
+                <tr>
+                    <th class="header">Book Information</th>
+                    <th colspan="2" class="header">Actions</th>
+                </tr>
+            </thead>
 
-    <button id="openDialog">Add Book</button>
+            <tbody id="product-table-body"></tbody>
+        </table>
+        <button id="openDialog">+ Add Book</button>
 
-    <dialog id="getDialog">
-        <h3>Add a new Book</h3>
-        <form id="addBookForm">
-            <label for="title">*Book's Title</label>
-            <input type="text" id="title" name="bookTitle" required>
+        <dialog id="getDialog">
+            <h3>Add a new Book</h3>
 
-            <label for="author">*Book's Author</label>
-            <input type="text" id="author" name="bookAuthor" required>
+            <form id="addBookForm">
+                <div class="form_body">
+                    <div>
+                        <label for="title">*Book's Title</label>
+                        <input type="text" id="title" name="bookTitle" required>
+                    </div>
+                    <div>
+                        <label for="author">*Book's Author</label>
+                        <input type="text" id="author" name="bookAuthor" required>
+                    </div>
+                    <div>
+                        <label for="pages">*Book's # of Pages</label>
+                        <input type="text" id="pages" name="bookPages" required>
+                    </div>
+                    <div>
+                        <div>
+                            <input type="checkbox" id="boolRead" name="bookRead">
+                            <label for="boolRead">*Have you read the book?</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                <button type="submit">Submit</button>
+                </div>
+            </form>
 
-            <label for="pages">*Book's # of Pages</label>
-            <input type="text" id="pages" name="bookPages" required>
-
-            <div>
-                <input type="checkbox" id="boolRead" name="bookRead">
-                <label for="boolRead">*Have you read the book?</label>
-            </div>
-
-            <button type="submit">Submit</button>
-        </form>
-        <button id="closeDialog">Close</button>
-    </dialog>
-
+            <button id="closeDialog">Close</button>
+        </dialog>
+    </div>
     <script src="library.js"></script>
 </body>
 

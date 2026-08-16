@@ -12,11 +12,7 @@ function Book(title, author, pages, read) {
     this.info = title + " by " + author + ", " + pages + " pages" + ", " + read;
 }
 
-const book1 = new Book("Book1", "author1", 1, "not read yet")
-const book2 = new Book("Book2", "author2", 2, "not read yet")
-const book3 = new Book("Book3", "author3", 3, "not read yet")
-
-const library = [book1, book2, book3];  //"Library" array of Books 
+const library = [];  //"Library" array of Books 
 
 // Constructs a book and adds to library
 function addBooktoLibrary(title, author, pages, read) {
