@@ -12,7 +12,11 @@ function Book(title, author, pages, read) {
     this.info = title + " by " + author + ", " + pages + " pages" + ", " + read;
 }
 
-const library = [];  //"Library" array of Books 
+const book1 = new Book("Book1", "author1", 1, "not read yet")
+const book2 = new Book("Book2", "author2", 2, "not read yet")
+const book3 = new Book("Book3", "author3", 3, "not read yet")
+
+const library = [book1, book2, book3];  //"Library" array of Books 
 
 // Constructs a book and adds to library
 function addBooktoLibrary(title, author, pages, read) {
@@ -31,6 +35,8 @@ function dispalyBookInfo() {
         tableRowsHTML += `
         <tr>
             <td>${book.info}</td>
+            <td><button class="deleteBtn" data-id="${book.id}">Remove</button></td>
+            <td><button class="readBtn" data-id="${book.id}">Change Read Status</button></td>
         </tr> 
     `;
     });
@@ -58,8 +64,37 @@ form.addEventListener('submit', function (event) {
 
     addBooktoLibrary(formData.get('bookTitle'), formData.get('bookAuthor'), formData.get('bookPages'), readStatus);
     dispalyBookInfo()
-    
+
     form.reset();
     dialog.close();
 });
+
+const tableBody = document.getElementById("product-table-body");
+tableBody.addEventListener("click", function (event) {
+    if (event.target.classList.contains("deleteBtn")) {
+        const bookID = event.target.getAttribute("data-id");
+        const bookIndex = library.findIndex(book => book.id === bookID);
+
+        if (bookIndex !== -1) {
+            library.splice(bookIndex, 1);
+            dispalyBookInfo();
+        }
+    }
+});
+
+tableBody.addEventListener("click", function (event) {
+    if (event.target.classList.contains("readBtn")) {
+        const bookID = event.target.getAttribute("data-id");
+        const targetBook = library.find(book => book.id === bookID);
+        if (targetBook) {
+            targetBook.changeReadStatus();
+            dispalyBookInfo();
+        }
+    }
+});
+
+Book.prototype.changeReadStatus = function () {
+    this.read = (this.read === "not read yet") ? "already read" : "not read yet";
+    this.info = `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+};
 
